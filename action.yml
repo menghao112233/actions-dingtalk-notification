@@ -8,6 +8,8 @@ inputs:
 outputs:
   time: # id of output
     description: 'The time we greeted you'
+  name: # id of output
+    description: 'My Name'
 runs:
   using: 'node20'
   main: 'index.js'
