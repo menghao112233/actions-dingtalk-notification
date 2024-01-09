@@ -39,9 +39,9 @@ try {
     const requestUrl = core.getInput("requestUrl");
     // 发送GET请求
     axios.get(requestUrl).then(response => {
-        response.data;
-        core.setOutput("data_json", date);
-        console.log(date.text)
+        const data = response.data;
+        core.setOutput("data_json", data);
+        console.log(data.text)
 
     }).catch(reason => {
         console.error('Promise rejected with reason:', reason);
