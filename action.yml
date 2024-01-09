@@ -6,7 +6,7 @@ inputs:
     required: true
   flag_data: # id of input
     description: 'check data'
-    required: true
+    required: false
   ding_talk_url: # id of input
     description: 'DingTalk notification address'
     required: false
