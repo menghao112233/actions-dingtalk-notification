@@ -39,7 +39,7 @@ if (!dataJson) {
         axios.get(requestUrl).then(response => {
             const data = response.data;
             core.setOutput("data_json", data);
-            console.log("axios.get request_url的值: " + data)
+            console.log("axios.get request_url的值: " +  JSON.stringify(data))
 
         }).catch(reason => {
             console.error('Promise rejected with reason:', reason);
@@ -61,7 +61,7 @@ if (!dataJson) {
             let flag = true;
             const flag_data = core.getInput("flag_data");
             console.log("flag_data的值 " + flag_data);
-            console.log("data的值："+data)
+            console.log("data的值：" + JSON.stringify(data))
             for (const item in data) {
 
                 if (!(flag_data[item] === data[item]) && flag) {
@@ -90,7 +90,7 @@ if (!dataJson) {
                 core.getInput("ding_talk_url"),
                 markdown_data,
             ).then((response) => {
-                console.log(`DingTalk message sent successfully: ${response.data}`);
+                console.log('DingTalk message sent successfully:  ' + JSON.stringify(`${response.data}`));
             }).catch((error) => {
                 console.error('Error sending DingTalk message:', error);
             });
