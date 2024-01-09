@@ -30,8 +30,7 @@ const fail_start_text =
     ` <font color=Orange>请先查看[发布版本](${requestUrl})是否误报,再查询问题</font>\n` +
     "|                 | <font color=Darkorange>**before**</font>  | <font color=Green>**after**</font>                  |\n" +
     "| --------------: | ------------- | ---------------------------- |\n";
-const dataJson = core.getInput("data_json");
-console.log("dataJson的值 " + dataJson)
+let dataJson = core.getInput("data_json");
 if (!dataJson) {
     try {
         // `who-to-greet` input defined in action metadata file
@@ -39,7 +38,7 @@ if (!dataJson) {
         axios.get(requestUrl).then(response => {
             const data = response.data;
             core.setOutput("data_json", data);
-            console.log("axios.get request_url的值: " +  JSON.stringify(data))
+            console.log("axios.get request_url的值: " + JSON.stringify(data))
 
         }).catch(reason => {
             console.error('Promise rejected with reason:', reason);
@@ -59,9 +58,8 @@ if (!dataJson) {
         axios.get(requestUrl).then(response => {
             const data = response.data;
             let flag = true;
-            const flag_data = core.getInput("flag_data");
-            console.log("flag_data的值 " + flag_data);
-            console.log("data的值：" + JSON.stringify(data))
+            const flag_data = JSON.parse(core.getInput("flag_data"));
+            dataJson = JSON.parse(dataJson)
             for (const item in data) {
 
                 if (!(flag_data[item] === data[item]) && flag) {
