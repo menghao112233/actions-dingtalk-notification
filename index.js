@@ -31,7 +31,7 @@ const fail_start_text =
     "|                 | <font color=Darkorange>**before**</font>  | <font color=Green>**after**</font>                  |\n" +
     "| --------------: | ------------- | ---------------------------- |\n";
 const dataJson = core.getInput("data_json");
-if (dataJson) {
+if (!dataJson) {
     try {
         // `who-to-greet` input defined in action metadata file
         // 发送GET请求
