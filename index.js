@@ -31,7 +31,7 @@ const fail_start_text =
     "|                 | <font color=Darkorange>**before**</font>  | <font color=Green>**after**</font>                  |\n" +
     "| --------------: | ------------- | ---------------------------- |\n";
 const dataJson = core.getInput("data_json");
-console.log("dataJson的值 "+dataJson)
+console.log("dataJson的值 " + dataJson)
 if (!dataJson) {
     try {
         // `who-to-greet` input defined in action metadata file
@@ -39,7 +39,7 @@ if (!dataJson) {
         axios.get(requestUrl).then(response => {
             const data = response.data;
             core.setOutput("data_json", data);
-            console.log(data)
+            console.log("axios.get request_url的值: " + data)
 
         }).catch(reason => {
             console.error('Promise rejected with reason:', reason);
@@ -60,13 +60,14 @@ if (!dataJson) {
             const data = response.data;
             let flag = true;
             const flag_data = core.getInput("flag_data");
-            console.log("flag_data的值 "+flag_data)
-            for (const key in flag_data) {
-                if (!(flag_data[key] === data[key]) && flag) {
+            console.log("flag_data的值 " + flag_data);
+            console.log("data的值："+data)
+            for (const item in data) {
+
+                if (!(flag_data[item] === data[item]) && flag) {
                     flag = false;
                 }
-            }
-            for (const item in data) {
+
                 const before_value = dataJson[item];
                 const after_value = data[item];
                 markdown_text += `| <small>**${item}:**</small>    | <small><font color=Darkorange>${before_value}<font></small>          |<small><font color=Green> ${after_value} <font></small>                     |\n`;
