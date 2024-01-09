@@ -2,14 +2,12 @@ name: 'DingTalk Notification'
 description: 'Actions completed publishing DingTalk notification'
 inputs:
   requestUrl:  # id of input
-    description: 'Get the before branches_tags and date'
+    description: 'Get the before data'
     required: true
 #    default: 'World'
 outputs:
-  branches_tags: # id of output
-    description: 'Pre release branches_tags'
-  date: # id of output
-    description: 'Pre release date'
+  data_json: # id of output
+    description: 'Pre release data'
 runs:
   using: 'node20'
   main: 'index.js'
