@@ -36,7 +36,7 @@ const fail_start_text =
 
 try {
     // `who-to-greet` input defined in action metadata file
-    const requestUrl = core.getInput(requestUrl);
+    const requestUrl = core.getInput("requestUrl");
     // 发送GET请求
     axios.get(requestUrl).then(response => {
         response.data;
@@ -54,7 +54,7 @@ try {
 }
 
 try {
-    const requestUrl = core.getInput(requestUrl);
+    const requestUrl = core.getInput("requestUrl");
     // `who-to-greet` input defined in action metadata file
     // const requestUrl = core.getInput(requestUrl);
     // 发送GET请求
