@@ -59,7 +59,7 @@ if (!old_json) {
             const data = response.data;
             let flag = true;
             const flag_data = JSON.parse(core.getInput("flag_data"));
-            console.log("flag_data的值:  " + flag_data)
+            console.log("flag_data的值:  " + JSON.stringify(flag_data))
             console.log("old_json的值:  " + old_json)
             console.log("当前data的值:  " + JSON.stringify(data))
             old_json = JSON.parse(old_json)
