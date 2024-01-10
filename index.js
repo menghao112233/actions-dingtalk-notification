@@ -60,11 +60,12 @@ if (!old_json) {
             let flag = true;
             const flag_data = JSON.parse(core.getInput("flag_data"));
             old_json = JSON.parse(old_json)
-            for (const item in data) {
-
-                if (!(flag_data[item] === data[item]) && flag) {
+            for (const key in flag_data) {
+                if (!(flag_data[key] === data[key]) && flag) {
                     flag = false;
                 }
+            }
+            for (const item in data) {
 
                 const before_value = old_json[item];
                 const after_value = data[item];
