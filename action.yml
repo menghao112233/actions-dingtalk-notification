@@ -10,15 +10,15 @@ inputs:
   ding_talk_url: # id of input
     description: 'DingTalk notification address'
     required: false
-  data_json: # id of output
+  old_json: # id of output
     description: 'Pre release data'
     required: false
-  rich_text: # id of output
+  footer_text: # id of output
     description: 'Notes Rich Text'
     required: false
 #    default: 'World'
 outputs:
-  data_json: # id of output
+  old_json: # id of output
     description: 'Pre release data'
 runs:
   using: 'node20'
