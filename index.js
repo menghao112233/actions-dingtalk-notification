@@ -33,6 +33,7 @@ const fail_start_text =
 let old_json = core.getInput("old_json");
 if (!old_json) {
     try {
+        console.log("requestUrl:"+requestUrl)
         // `who-to-greet` input defined in action metadata file
         // 发送GET请求
         axios.get(requestUrl).then(response => {
