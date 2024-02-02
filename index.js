@@ -31,7 +31,9 @@ const fail_start_text =
     "|                 | <font color=Darkorange>**before**</font>  | <font color=Green>**after**</font>                  |\n" +
     "| --------------: | ------------- | ---------------------------- |\n";
 let old_json = core.getInput("old_json");
+console.log(1)
 if (!old_json) {
+    console.log(2)
     try {
         console.log("requestUrl:"+requestUrl)
         // `who-to-greet` input defined in action metadata file
@@ -51,6 +53,7 @@ if (!old_json) {
         core.setFailed(error.message);
     }
 } else {
+    console.log('b')
     try {
         const requestUrl = core.getInput("request_url");
         console.log("requestUrl:"+requestUrl)
