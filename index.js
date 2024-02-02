@@ -1,3 +1,5 @@
+const core = require('@actions/core');
+
 
 console.log("start")
 // const requestUrl = core.getInput("request_url");
