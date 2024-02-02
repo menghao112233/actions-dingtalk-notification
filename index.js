@@ -89,7 +89,7 @@ if (!old_json) {
                     markdown_text +
                     end_text;
             } else {
-                markdown_data.markdown.title = `github发布${github.context.repo.repo}失败`
+                markdown_data.markdown.title = `github发布${projectName}失败`
                 markdown_data.markdown.text =
                     fail_start_text +
                     markdown_text +
