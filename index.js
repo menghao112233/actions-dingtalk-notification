@@ -5,7 +5,9 @@ const axios = require('axios');
 
 try {
 
-
+    const instance = axios.create({
+        proxy: false
+    });
 // const flag_data =
 //     {"appName": "www-oscollege-net-api"}
     console.log("start")
@@ -42,7 +44,7 @@ try {
             console.log("requestUrl:" + requestUrl)
             // `who-to-greet` input defined in action metadata file
             // 发送GET请求
-            axios.get(requestUrl).then(response => {
+            instance.get(requestUrl).then(response => {
                 const data = response.data;
                 core.setOutput("old_json", data);
                 console.log("axios.get request_url的值: " + JSON.stringify(data))
@@ -65,7 +67,7 @@ try {
             // `who-to-greet` input defined in action metadata file
             // const requestUrl = core.getInput(requestUrl);
             // 发送GET请求
-            axios.get(requestUrl).then(response => {
+            instance.get(requestUrl).then(response => {
                 const data = response.data;
                 let flag = true;
                 const flag_data = JSON.parse(core.getInput("flag_data"));
@@ -98,7 +100,7 @@ try {
                         end_text;
                 }
 
-                axios.post(
+                instance.post(
                     core.getInput("ding_talk_url"),
                     markdown_data,
                 ).then((response) => {
