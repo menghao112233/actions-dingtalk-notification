@@ -53,6 +53,8 @@ if (!old_json) {
 } else {
     try {
         const requestUrl = core.getInput("request_url");
+        console.log("requestUrl:"+requestUrl)
+
         // `who-to-greet` input defined in action metadata file
         // const requestUrl = core.getInput(requestUrl);
         // 发送GET请求
