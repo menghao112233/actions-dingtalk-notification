@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const axios = require('axios');
 
 // 仓库/项目名
-const repository = repository;
+const repository = process.env.GITHUB_REPOSITORY;
 //发布人
 const actor = process.env.GITHUB_ACTOR;
 //项目名
