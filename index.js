@@ -4,7 +4,7 @@ const axios = require('axios');
 
 // const flag_data =
 //     {"appName": "www-oscollege-net-api"}
-
+console.log("start")
 const success_start_text =
     `### <font color=Green>github发布${github.context.repo.repo}完成</font>\n` +
     "|                 | <font color=Darkorange>**before**</font>  | <font color=Green>**after**</font>                  |\n" +
