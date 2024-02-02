@@ -44,6 +44,7 @@ if (!old_json) {
     try {
         // `who-to-greet` input defined in action metadata file
         // 发送GET请求
+        console.log("requestUrl: "+requestUrl)
         axios.get(requestUrl).then(response => {
             const data = response.data;
             core.setOutput("old_json", data);
