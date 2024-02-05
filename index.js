@@ -1,5 +1,5 @@
 const { success_start_text, end_text, markdown_data, fail_start_text } = require('./constants/dingTalk');
-
+const {requestUrlAxios} =require('./api/axios')
 const core = require('@actions/core');
 const axios = require('axios');
 
@@ -16,14 +16,10 @@ if (!old_json) {
         // `who-to-greet` input defined in action metadata file
         // 发送GET请求
         console.log("requestUrl: "+requestUrl)
-        axios.get(requestUrl).then(response => {
-            const data = response.data;
-            core.setOutput("old_json", data);
-            console.log("axios.get request_url的值: " + JSON.stringify(data))
+        //返回查询到的数据
+        core.setOutput("old_json", requestUrlAxios(requestUrl));
 
-        }).catch(reason => {
-            console.error('Promise rejected with reason:', reason);
-        });
+
     } catch (error) {
         core.setFailed(error.message);
     }
