@@ -16,9 +16,10 @@ if (!old_json) {
     try {
         // `who-to-greet` input defined in action metadata file
         // 发送GET请求
-        console.log("requestUrl: "+requestUrl)
+        console.log("requestUrl: " + requestUrl);
+        const  data=requestUrlAxios(requestUrl)
         //查询到的数据
-        process.env.BEFORE_DING_DATA= JSON.stringify(requestUrlAxios(requestUrl));
+        process.env.BEFORE_DING_DATA= JSON.stringify(data);
         // core.setOutput("old_json", requestUrlAxios(requestUrl));
         console.log("BEFORE_DING_DATA:"+process.env.BEFORE_DING_DATA)
     } catch (error) {
