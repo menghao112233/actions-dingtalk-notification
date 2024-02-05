@@ -8,11 +8,11 @@ const failDingTalkAxios = () => {
 
 }
 
-async function requestUrlAxios(requestUrl) {
-    await axios.get(requestUrl).then(response => {
+function requestUrlAxios(requestUrl) {
+    axios.get(requestUrl).then(response => {
         const data = response.data;
         console.log("axios.get request_url的值: " + JSON.stringify(data))
-        return data;
+        process.env.BEFORE_DING_DATA = JSON.stringify(data);
 
     }).catch(reason => {
         console.error('Promise rejected with reason:', reason);
