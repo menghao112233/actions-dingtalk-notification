@@ -10,13 +10,14 @@ let markdown_text = "";
 const requestUrl = core.getInput("request_url");
 
 
-let old_json = process.env.BEFORE_DING_DATA;
+let old_json = core.getInput("old_json");
+console.log("old_json: -->"+old_json)
 if (!old_json) {
     try {
         // `who-to-greet` input defined in action metadata file
         // 发送GET请求
         console.log("requestUrl: "+requestUrl)
-        //获取查询到的数据
+        //查询到的数据
         process.env.BEFORE_DING_DATA= JSON.stringify(requestUrlAxios(requestUrl));
         // core.setOutput("old_json", requestUrlAxios(requestUrl));
     } catch (error) {
