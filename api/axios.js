@@ -14,6 +14,8 @@ function requestUrlAxios(requestUrl) {
         console.log("axios.get request_url的值: " + JSON.stringify(data))
         process.env.BEFORE_DING_DATA = JSON.stringify(data);
 
+        console.log(process.env.BEFORE_DING_DATA)
+
     }).catch(reason => {
         console.error('Promise rejected with reason:', reason);
         return null;
