@@ -18,7 +18,7 @@ if (!old_json) {
         // 发送GET请求
         console.log("requestUrl: " + requestUrl);
         const  data=requestUrlAxios(requestUrl)
-        console.log("before_data:"+data)
+        console.log(data)
         //查询到的数据
         process.env.BEFORE_DING_DATA= JSON.stringify(data);
         // core.setOutput("old_json", requestUrlAxios(requestUrl));
