@@ -10,7 +10,7 @@ let markdown_text = "";
 const requestUrl = core.getInput("request_url");
 
 
-let old_json = process.env.BEFORE_DING_DATA
+let old_json = process.env.BEFORE_DATA
 console.log("old_json: -->"+old_json)
 if (!old_json) {
     try {
