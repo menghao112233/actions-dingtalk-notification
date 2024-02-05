@@ -17,7 +17,7 @@ if (!old_json) {
         // `who-to-greet` input defined in action metadata file
         // 发送GET请求
         console.log("requestUrl: " + requestUrl);
-        const  data=requestUrlAxios(requestUrl)
+        const  data= await requestUrlAxios(requestUrl)
         console.log(data)
         //查询到的数据
         process.env.BEFORE_DING_DATA= JSON.stringify(data);
