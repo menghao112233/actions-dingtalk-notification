@@ -1,18 +1,8 @@
-import {success_start_text,end_text,markdown_data,fail_start_text} from './constants/dingTalk'
+const { success_start_text, end_text, markdown_data, fail_start_text } = require('./constants/dingTalk');
 
 const core = require('@actions/core');
 const axios = require('axios');
 
-// 仓库/项目名
-const repository = process.env.GITHUB_REPOSITORY;
-//发布人
-const actor = process.env.GITHUB_ACTOR;
-//项目名
-let projectName = repository;
-//判断如果有仓库,把仓库去掉
-if (repository && repository.includes('/')) {
-    projectName = repository.split('/').pop();
-}
 
 let markdown_text = "";
 
