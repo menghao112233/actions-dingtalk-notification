@@ -20,7 +20,7 @@ if (!old_json) {
         //查询到的数据
         process.env.BEFORE_DING_DATA= JSON.stringify(requestUrlAxios(requestUrl));
         // core.setOutput("old_json", requestUrlAxios(requestUrl));
-        console.log(process.env.BEFORE_DING_DATA)
+        console.log("BEFORE_DING_DATA:"+process.env.BEFORE_DING_DATA)
     } catch (error) {
         core.setFailed(error.message);
     }
