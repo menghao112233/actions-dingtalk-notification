@@ -29,6 +29,7 @@ async function main() {
         try {
             const requestUrl = core.getInput("request_url");
             const after_data = await requestUrlAxios(requestUrl)
+            before_data = JSON.parse(before_data)
             console.log("after_data request_url的值: " + JSON.stringify(after_data))
 
             for (const item in after_data) {
@@ -110,4 +111,5 @@ async function main() {
         }
     }
 }
+
 main();
