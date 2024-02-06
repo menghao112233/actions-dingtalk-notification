@@ -1,12 +1,16 @@
 const axios = require('axios');
-
-const successDingTalkAxios = () => {
-
+function dingTalkAxios (ding_talk_url,markdown_data){
+    axios.post(
+        ding_talk_url,
+        markdown_data,
+    ).then((response) => {
+        console.log('DingTalk message sent successfully:  ' + JSON.stringify(`${response.data}`));
+    }).catch((error) => {
+        console.error('Error sending DingTalk message:', error);
+    });
 }
 
-const failDingTalkAxios = () => {
 
-}
 
 async function requestUrlAxios(requestUrl) {
     return await axios.get(requestUrl).then(response => {
@@ -17,21 +21,9 @@ async function requestUrlAxios(requestUrl) {
     });
 }
 
-async function afterRequestUrlAxios(requestUrl) {
-    await axios.get(requestUrl).then(response => {
-        const data = response.data;
-        console.log("axios.get request_url的值: " + JSON.stringify(data))
-        process.env.AFTER_DATA = JSON.stringify(data);
-        console.log("process.env.AFTER_DATA_AXIOS")
-        console.log(process.env.AFTER_DATA)
-    }).catch(reason => {
-        console.error('Promise rejected with reason:', reason);
-        return null;
-    });
-}
 
 
 module.exports = {
     requestUrlAxios,
-    afterRequestUrlAxios
+    dingTalkAxios
 };

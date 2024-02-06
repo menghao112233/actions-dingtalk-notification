@@ -1,26 +1,28 @@
 const fs = require('fs');
 const {fail_title, success_start_text, end_text, markdown_data, fail_start_text} = require('./constants/dingTalk');
-const {requestUrlAxios, afterRequestUrlAxios} = require('./api/axios')
+const {requestUrlAxios, dingTalkAxios} = require('./api/axios')
 const core = require('@actions/core');
 const axios = require('axios');
 
-
+//发送钉钉消息内容
 let markdown_text = "";
 
-
+//获取钉钉消息内容接口地址
 const requestUrl = core.getInput("request_url");
 
-
+//钉钉消息before内容
 let before_data = process.env.BEFORE_DATA
 console.log("before_data: -->" + before_data)
 
 async function main() {
+    //根据before_data参数判断是获取before_data内容消息 还是 组装钉钉消息内容发送钉钉消息.
     if (!before_data) {
         try {
             // `who-to-greet` input defined in action metadata file
             // 发送GET请求
             const before_data = await requestUrlAxios(requestUrl)
             console.log("before_data request_url的值: " + JSON.stringify(before_data))
+            //将消息内容添加到 变量中.
             fs.writeFileSync(process.env.GITHUB_ENV, `BEFORE_DATA=${JSON.stringify(before_data)}`);
         } catch (error) {
             core.setFailed(error.message);
@@ -46,15 +48,8 @@ async function main() {
                 success_start_text +
                 markdown_text +
                 end_text;
-
-            axios.post(
-                core.getInput("ding_talk_url"),
-                markdown_data,
-            ).then((response) => {
-                console.log('DingTalk message sent successfully:  ' + JSON.stringify(`${response.data}`));
-            }).catch((error) => {
-                console.error('Error sending DingTalk message:', error);
-            });
+            //发送钉钉通知
+            dingTalkAxios(core.getInput("ding_talk_url"),markdown_data)
 
 
             // axios.get(requestUrl).then(response => {
