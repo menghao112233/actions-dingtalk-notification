@@ -1,5 +1,5 @@
-const { success_start_text, end_text, markdown_data, fail_start_text } = require('./constants/dingTalk');
-const {requestUrlAxios} =require('./api/axios')
+const {fail_title, success_start_text, end_text, markdown_data, fail_start_text} = require('./constants/dingTalk');
+const {requestUrlAxios} = require('./api/axios')
 const core = require('@actions/core');
 const axios = require('axios');
 
@@ -11,7 +11,7 @@ const requestUrl = core.getInput("request_url");
 
 
 let old_json = process.env.BEFORE_DATA
-console.log("old_json: -->"+old_json)
+console.log("old_json: -->" + old_json)
 if (!old_json) {
     try {
         // `who-to-greet` input defined in action metadata file
@@ -53,7 +53,7 @@ if (!old_json) {
                     markdown_text +
                     end_text;
             } else {
-                markdown_data.markdown.title = `github发布${projectName}失败`
+                markdown_data.markdown.title = fail_title
                 markdown_data.markdown.text =
                     fail_start_text +
                     markdown_text +

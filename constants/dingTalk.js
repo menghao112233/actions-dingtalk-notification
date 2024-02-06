@@ -17,9 +17,12 @@ if (repository && repository.includes('/')) {
     projectName = repository.split('/').pop();
 }
 
+const success_title = `github发布${projectName}完成`
+
+const fail_title = `github发布${projectName}失败`
 
 const success_start_text =
-    `### <font color=Green>github发布${repository}完成</font>\n` +
+    `### <font color=Green>github发布${projectName}完成</font>\n` +
     "|                 | <font color=Darkorange>**before**</font>  | <font color=Green>**after**</font>                  |\n" +
     "| --------------: | ------------- | ---------------------------- |\n";
 
@@ -31,7 +34,7 @@ const end_text =
 const markdown_data = {
     msgtype: "markdown",
     markdown: {
-        title: `github发布${repository}完成`,
+        title: success_title,
         text: ""
     },
     at: {
@@ -40,13 +43,14 @@ const markdown_data = {
 };
 
 const fail_start_text =
-    `### <font color=Red>github发布${repository}未通过</font>\n` +
+    `### <font color=Red>github发布${projectName}未通过</font>\n` +
     ` <font color=Orange>请先查看[发布版本](${requestUrl})是否误报,再查询问题</font>\n` +
     "|                 | <font color=Darkorange>**before**</font>  | <font color=Green>**after**</font>                  |\n" +
     "| --------------: | ------------- | ---------------------------- |\n";
 
 
 module.exports = {
+    fail_title,
     success_start_text,
     fail_start_text,
     end_text,
