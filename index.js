@@ -1,5 +1,6 @@
+const fs = require('fs');
 const {fail_title, success_start_text, end_text, markdown_data, fail_start_text} = require('./constants/dingTalk');
-const {beforeRequestUrlAxios, afterRequestUrlAxios} = require('./api/axios')
+const {requestUrlAxios, afterRequestUrlAxios} = require('./api/axios')
 const core = require('@actions/core');
 const axios = require('axios');
 
@@ -16,25 +17,23 @@ if (!before_data) {
     try {
         // `who-to-greet` input defined in action metadata file
         // 发送GET请求
-        beforeRequestUrlAxios(requestUrl)
+        const before_data= await requestUrlAxios(requestUrl)
+        console.log("before_data request_url的值: " + JSON.stringify(before_data))
+        fs.writeFileSync(process.env.GITHUB_ENV, `BEFORE_DATA=${JSON.stringify(before_data)}`);
     } catch (error) {
         core.setFailed(error.message);
     }
 } else {
     try {
         const requestUrl = core.getInput("request_url");
+        const after_data= await requestUrlAxios(requestUrl)
+        console.log("after_data request_url的值: " + JSON.stringify(after_data))
 
-        // `who-to-greet` input defined in action metadata file
-        // const requestUrl = core.getInput(requestUrl);
-        // 发送GET请求
-        afterRequestUrlAxios(requestUrl);
-        console.log("process.env.AFTER_DATA")
-        console.log(process.env.AFTER_DATA)
-        for (const item in process.env.AFTER_DATA) {
+        for (const item in after_data) {
 
             const before_value = before_data[item];
             console.log("before_value:" + before_value)
-            const after_value = process.env.AFTER_DATA[item];
+            const after_value = after_data[item];
             console.log("after_value:" + after_value)
             markdown_text += `| <small>**${item}:**</small>    | <small><font color=Darkorange>${before_value}<font></small>          |<small><font color=Green> ${after_value} <font></small>                     |\n`;
 
