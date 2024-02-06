@@ -27,7 +27,7 @@ if (!before_data) {
         // `who-to-greet` input defined in action metadata file
         // const requestUrl = core.getInput(requestUrl);
         // 发送GET请求
-        await afterRequestUrlAxios(requestUrl);
+        afterRequestUrlAxios(requestUrl);
         console.log("process.env.AFTER_DATA")
         console.log(process.env.AFTER_DATA)
         for (const item in process.env.AFTER_DATA) {

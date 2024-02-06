@@ -20,15 +20,20 @@ async function beforeRequestUrlAxios(requestUrl) {
 }
 
 async function afterRequestUrlAxios(requestUrl) {
-    await axios.get(requestUrl).then(response => {
-        const data = response.data;
-        console.log("axios.get request_url的值: " + JSON.stringify(data))
-        process.env.AFTER_DATA = JSON.stringify(data);
-        console.log("process.env.AFTER_DATA_AXIOS")
-        console.log(process.env.AFTER_DATA)
-    }).catch(reason => {
-        console.error('Promise rejected with reason:', reason);
-        return null;
+    return new Promise((resolve, reject) => {
+        axios.get(requestUrl)
+            .then(response => {
+                const data = response.data;
+                console.log("axios.get request_url的值: " + JSON.stringify(data));
+                process.env.AFTER_DATA = JSON.stringify(data);
+                console.log("process.env.AFTER_DATA_AXIOS");
+                console.log(process.env.AFTER_DATA);
+                resolve();
+            })
+            .catch(reason => {
+                console.error('Promise rejected with reason:', reason);
+                reject(null);
+            });
     });
 }
 
