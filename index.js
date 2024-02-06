@@ -10,7 +10,7 @@ let markdown_text = "";
 async function main() {
 
     //校验验证参数
-    const check = core.getInput("check");
+    let check = core.getInput("check");
 
     //钉钉消息before内容
     let before_data = process.env.BEFORE_DATA
@@ -31,8 +31,8 @@ async function main() {
     }
     //进行校验
     if (check) {
-        console.log("check:")
-        console.log(check)
+        console.log("check: " + check);
+        check = JSON.parse(check)
         const after_data = await requestUrlAxios(requestUrl)
         before_data = JSON.parse(before_data)
         console.log("after_data request_url的值: " + JSON.stringify(after_data))
