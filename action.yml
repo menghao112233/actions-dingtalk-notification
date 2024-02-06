@@ -5,8 +5,8 @@ inputs:
   request_url: # id of input
     description: 'curl Get the before data'
     required: true
-  check: # id of input
-    description: 'check data'
+  validate: # id of input
+    description: 'validate data'
     required: false
   ding_talk_url: # id of input
     description: 'DingTalk notification address'
