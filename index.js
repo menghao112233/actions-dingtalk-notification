@@ -1,5 +1,5 @@
 const {fail_title, success_start_text, end_text, markdown_data, fail_start_text} = require('./constants/dingTalk');
-const {beforeRequestUrlAxios,afterRequestUrlAxios} = require('./api/axios')
+const {beforeRequestUrlAxios, afterRequestUrlAxios} = require('./api/axios')
 const core = require('@actions/core');
 const axios = require('axios');
 
@@ -27,19 +27,19 @@ if (!before_data) {
         // `who-to-greet` input defined in action metadata file
         // const requestUrl = core.getInput(requestUrl);
         // 发送GET请求
-        afterRequestUrlAxios(requestUrl);
+        await afterRequestUrlAxios(requestUrl);
         console.log("process.env.AFTER_DATA")
         console.log(process.env.AFTER_DATA)
         for (const item in process.env.AFTER_DATA) {
 
             const before_value = before_data[item];
-            console.log("before_value:"+before_value)
+            console.log("before_value:" + before_value)
             const after_value = process.env.AFTER_DATA[item];
-            console.log("after_value:"+after_value)
+            console.log("after_value:" + after_value)
             markdown_text += `| <small>**${item}:**</small>    | <small><font color=Darkorange>${before_value}<font></small>          |<small><font color=Green> ${after_value} <font></small>                     |\n`;
 
         }
-        console.log("markdown_text:"+markdown_text)
+        console.log("markdown_text:" + markdown_text)
         markdown_data.markdown.text =
             success_start_text +
             markdown_text +
