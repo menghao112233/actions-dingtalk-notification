@@ -31,6 +31,8 @@ async function main() {
     }
     //进行校验
     if (check) {
+        console.log("check:")
+        console.log(check)
         const after_data = await requestUrlAxios(requestUrl)
         before_data = JSON.parse(before_data)
         console.log("after_data request_url的值: " + JSON.stringify(after_data))
