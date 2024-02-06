@@ -1,7 +1,7 @@
 const axios = require('axios');
-function dingTalkAxios (ding_talk_url,markdown_data){
+function dingTalkAxios (im_hook_url,markdown_data){
     axios.post(
-        ding_talk_url,
+        im_hook_url,
         markdown_data,
     ).then((response) => {
         console.log('DingTalk message sent successfully:  ' + JSON.stringify(`${response.data}`));

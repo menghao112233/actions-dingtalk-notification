@@ -4,12 +4,12 @@ continue-on-error: true
 inputs:
   request_url: # id of input
     description: 'curl Get the before data'
-    required: true
+    required: false
   validate: # id of input
     description: 'validate data'
     required: false
-  ding_talk_url: # id of input
-    description: 'DingTalk notification address'
+  im_hook_url: # id of input
+    description: 'im_hook_url notification address'
     required: false
   footer_text: # id of output
     description: 'Notes Rich Text'

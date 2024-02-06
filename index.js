@@ -25,15 +25,13 @@ async function main() {
         // 发送GET请求
         const before_data = await requestUrlAxios(requestUrl)
         console.log("before_data: " + JSON.stringify(before_data))
-        //将消息内容添加到 变量中.
-        fs.writeFileSync(process.env.GITHUB_ENV, `BEFORE_DATA=${JSON.stringify(before_data)}`);
-        //将请求地址存入添加到变量中 供下次直接使用
-        fs.writeFileSync(process.env.GITHUB_ENV, `REQUEST_URL=${requestUrl}`);
+        //将消息内容以及请求地址添加到 变量中.
+        fs.writeFileSync(process.env.GITHUB_ENV, `BEFORE_DATA=${JSON.stringify(before_data)},REQUEST_URL=${requestUrl}`);
         return;
     }
 
     requestUrl = process.env.REQUEST_URL
-    console.log("requestUrl: "+requestUrl)
+    console.log("requestUrl: " + requestUrl)
     //进行校验
     if (validate) {
         console.log("validate: " + validate);
@@ -73,7 +71,7 @@ async function main() {
                 end_text;
         }
         //发送钉钉通知
-        dingTalkAxios(core.getInput("ding_talk_url"), markdown_data)
+        dingTalkAxios(core.getInput("im_hook_url"), markdown_data)
         return;
     }
 
@@ -93,7 +91,7 @@ async function main() {
         markdown_text +
         end_text;
     //发送钉钉通知
-    dingTalkAxios(core.getInput("ding_talk_url"), markdown_data)
+    dingTalkAxios(core.getInput("im_hook_url"), markdown_data)
 
 }
 
