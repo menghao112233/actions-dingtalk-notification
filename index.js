@@ -71,6 +71,7 @@ async function main() {
             after_data = await requestUrlAxios(requestUrl)
         }
         before_data = JSON.parse(before_data)
+        after_data = JSON.parse(after_data)
         console.log("after_data: " + JSON.stringify(after_data))
 
         let flag = true;
@@ -115,6 +116,7 @@ async function main() {
         after_data = await requestUrlAxios(requestUrl)
     }
     before_data = JSON.parse(before_data)
+    after_data = JSON.parse(after_data)
     console.log("after_data: " + JSON.stringify(after_data))
 
     for (const item in after_data) {
