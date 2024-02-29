@@ -17,15 +17,20 @@ function isURL(str) {
 
 //读取文件
 function readFileSync(requestUrl) {
-    // 读取文件的第一行内容
-    const fileContent = fs.readFileSync(requestUrl, 'utf-8');
-    const firstLine = fileContent.split('\n')[0];
-    console.log("firstLine:" + firstLine)
-    console.log(firstLine)
-    // 从注释中提取JSON字符串
-    const match = firstLine.match(/<!--(.*)-->/);
-    const jsonString = match ? match[1] : '';
-    console.log("firstLine—jsonString:" + jsonString)
+    let jsonString = "{}"
+    try {
+        // 读取文件的第一行内容
+        const fileContent = fs.readFileSync(requestUrl, 'utf-8');
+        const firstLine = fileContent.split('\n')[0];
+        console.log("firstLine:" + firstLine)
+        console.log(firstLine)
+        // 从注释中提取JSON字符串
+        const match = firstLine.match(/<!--(.*)-->/);
+        jsonString = match ? match[1] : '';
+        console.log("firstLine—jsonString:" + jsonString)
+    } catch (e) {
+        console.log(e)
+    }
     return jsonString;
 }
 
