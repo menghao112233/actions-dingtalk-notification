@@ -14,6 +14,21 @@ function isURL(str) {
     return pattern.test(str);
 }
 
+
+//读取文件
+function readFileSync(requestUrl) {
+    // 读取文件的第一行内容
+    const fileContent = fs.readFileSync(requestUrl, 'utf-8');
+    const firstLine = fileContent.split('\n')[0];
+    console.log("firstLine:" + firstLine)
+    console.log(firstLine)
+    // 从注释中提取JSON字符串
+    const match = firstLine.match(/<!--(.*)-->/);
+    const jsonString = match ? match[1] : '';
+    console.log("firstLine—jsonString:" + jsonString)
+    return jsonString;
+}
+
 async function main() {
 
     //校验验证参数
@@ -28,41 +43,33 @@ async function main() {
     //根据before_data参数判断是获取before_data内容消息 还是 组装钉钉消息内容发送钉钉消息.
     if (!before_data) {
         // 判断前后端
-        if (!isURL(requestUrl)){
-            // 读取文件的第一行内容
-            const fileContent = fs.readFileSync(requestUrl, 'utf-8');
-            const firstLine = fileContent.split('\n')[0];
-            console.log("firstLine:")
-            console.log(firstLine)
-            // 从注释中提取JSON字符串
-            const jsonRegex = /<!--(.*)-->/;
-            console.log("jsonRegex:")
-            console.log(jsonRegex)
-            const match = firstLine.match(jsonRegex);
-            console.log("match:")
-            console.log(match)
-            const jsonString = match ? match[1] : '';
-            console.log("jsonString:")
-            console.log(jsonString);
-            return
+        if (!isURL(requestUrl)) {
+            //读取文件的第一行内容
+            before_data = readFileSync(requestUrl);
+        } else {
+            // 发送GET请求
+            before_data = await requestUrlAxios(requestUrl)
+            console.log("before_data: " + JSON.stringify(before_data))
         }
-        // 发送GET请求
-        const before_data = await requestUrlAxios(requestUrl)
-        console.log("before_data: " + JSON.stringify(before_data))
+
         //将消息内容添加到 变量中.
         fs.writeFileSync(process.env.GITHUB_ENV, `BEFORE_DATA=${JSON.stringify(before_data)}`);
         //将请求地址存入添加到变量中 供下次直接使用
         fs.appendFileSync(process.env.GITHUB_ENV, `\nREQUEST_URL=${requestUrl}`);
         return;
     }
-
+    let after_data
     requestUrl = process.env.REQUEST_URL
     console.log("requestUrl: " + requestUrl)
     //进行校验
     if (validate) {
         console.log("validate: " + validate);
         validate = JSON.parse(validate)
-        const after_data = await requestUrlAxios(requestUrl)
+        if (!isURL(requestUrl)) {
+            after_data = readFileSync(requestUrl)
+        } else {
+            after_data = await requestUrlAxios(requestUrl)
+        }
         before_data = JSON.parse(before_data)
         console.log("after_data: " + JSON.stringify(after_data))
 
@@ -102,7 +109,11 @@ async function main() {
     }
 
 
-    const after_data = await requestUrlAxios(requestUrl)
+    if (!isURL(requestUrl)) {
+        after_data = readFileSync(requestUrl)
+    } else {
+        after_data = await requestUrlAxios(requestUrl)
+    }
     before_data = JSON.parse(before_data)
     console.log("after_data: " + JSON.stringify(after_data))
 
