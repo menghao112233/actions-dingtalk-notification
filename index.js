@@ -53,12 +53,12 @@ async function main() {
             before_data = readFileSync(requestUrl);
         } else {
             // 发送GET请求
-            before_data = await requestUrlAxios(requestUrl)
-            console.log("before_data: " + JSON.stringify(before_data))
+            before_data = JSON.stringify(await requestUrlAxios(requestUrl))
+            console.log("before_data: " + before_data)
         }
 
         //将消息内容添加到 变量中.
-        fs.writeFileSync(process.env.GITHUB_ENV, `BEFORE_DATA=${JSON.stringify(before_data)}`);
+        fs.writeFileSync(process.env.GITHUB_ENV, `BEFORE_DATA=${before_data}`);
         //将请求地址存入添加到变量中 供下次直接使用
         fs.appendFileSync(process.env.GITHUB_ENV, `\nREQUEST_URL=${requestUrl}`);
         return;
