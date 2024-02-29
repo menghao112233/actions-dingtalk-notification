@@ -7,6 +7,13 @@ const core = require('@actions/core');
 let markdown_text = "";
 
 
+//验证是否为有效的URL
+function isURL(str) {
+    // 匹配URL的模式
+    var pattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    return pattern.test(str);
+}
+
 async function main() {
 
     //校验验证参数
@@ -15,13 +22,30 @@ async function main() {
     //钉钉消息before内容
     let before_data = process.env.BEFORE_DATA
     console.log("before_data: " + before_data)
-
     //获取钉钉消息内容接口地址
     let requestUrl = core.getInput("request_url");
 
     //根据before_data参数判断是获取before_data内容消息 还是 组装钉钉消息内容发送钉钉消息.
     if (!before_data) {
-        // `who-to-greet` input defined in action metadata file
+        // 判断前后端
+        if (!isURL(requestUrl)){
+            // 读取文件的第一行内容
+            const fileContent = fs.readFileSync(requestUrl, 'utf-8');
+            const firstLine = fileContent.split('\n')[0];
+            console.log("firstLine:")
+            console.log(firstLine)
+            // 从注释中提取JSON字符串
+            const jsonRegex = /<!--(.*)-->/;
+            console.log("jsonRegex:")
+            console.log(jsonRegex)
+            const match = firstLine.match(jsonRegex);
+            console.log("match:")
+            console.log(match)
+            const jsonString = match ? match[1] : '';
+            console.log("jsonString:")
+            console.log(jsonString);
+            return
+        }
         // 发送GET请求
         const before_data = await requestUrlAxios(requestUrl)
         console.log("before_data: " + JSON.stringify(before_data))
