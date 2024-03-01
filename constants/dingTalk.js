@@ -44,7 +44,7 @@ const markdown_data = {
 
 const fail_start_text =
     `### <font color=Red>github发布${projectName}未通过</font>\n` +
-    ` <font color=Orange>请先查看[发布版本](${requestUrl})是否误报,再查询问题</font>\n` +
+    ` <font color=Orange>请先查看[发布版本](${process.env.REQUEST_URL})是否误报,再查询问题</font>\n` +
     "|                 | <font color=Darkorange>**before**</font>  | <font color=Green>**after**</font>                  |\n" +
     "| --------------: | ------------- | ---------------------------- |\n";
 

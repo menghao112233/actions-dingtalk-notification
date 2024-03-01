@@ -18,12 +18,11 @@ function isURL(str) {
 const regex = /<!doctype html>/i;
 
 //读取文件
-function readFileSync(requestUrl) {
+function readFileSync(html) {
     let jsonString = "{}"
     try {
         // 读取文件的第一行内容
-        const fileContent = fs.readFileSync(requestUrl, 'utf-8');
-        const firstLine = fileContent.split('\n')[0];
+        const firstLine = html.split('\n')[0];
         console.log("firstLine:" + firstLine)
         console.log(firstLine)
         // 从注释中提取JSON字符串
@@ -55,7 +54,7 @@ async function main() {
         // 判断是否是html
         if (regex.test(before_data)) {
             //读取文件的第一行内容
-            before_data = readFileSync(requestUrl);
+            before_data = readFileSync(before_data);
         } else {
             before_data = JSON.stringify(before_data)
             console.log("before_data: " + before_data)
@@ -84,7 +83,7 @@ async function main() {
         //判断请求地址是否为url
         if (regex.test(after_data)) {
             //读取文件的第一行内容
-            after_data = readFileSync(requestUrl)
+            after_data = readFileSync(after_data)
         }
         //将json字符串解析为Json
         before_data = JSON.parse(before_data)
@@ -140,7 +139,7 @@ async function main() {
     //判断请求地址是否为url
     if (regex.test(after_data)) {
         //读取文件的第一行内容
-        after_data = readFileSync(requestUrl)
+        after_data = readFileSync(after_data)
     }
     //将json字符串解析为Json
     before_data = JSON.parse(before_data)
