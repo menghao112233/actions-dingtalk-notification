@@ -84,11 +84,12 @@ async function main() {
         if (regex.test(after_data)) {
             //读取文件的第一行内容
             after_data = readFileSync(after_data)
+            after_data = JSON.parse(after_data)
+
         }
         console.log("after_data: " + JSON.stringify(after_data))
         //将json字符串解析为Json
         before_data = JSON.parse(before_data)
-        after_data = JSON.parse(after_data)
 
 
         //判断校验成功失败标识
@@ -141,12 +142,11 @@ async function main() {
     if (regex.test(after_data)) {
         //读取文件的第一行内容
         after_data = readFileSync(after_data)
+        after_data = JSON.parse(after_data)
     }
     console.log("after_data: " + JSON.stringify(after_data))
     //将json字符串解析为Json
     before_data = JSON.parse(before_data)
-    after_data = JSON.parse(after_data)
-    console.log("after_data: " + JSON.stringify(after_data))
 
     //封装markdown_text
     for (const item in after_data) {
