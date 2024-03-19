@@ -79,12 +79,13 @@ async function main() {
 
         //发送GET请求获取内容
         after_data = await requestUrlAxios(requestUrl)
-        console.log("after_data: " + JSON.stringify(after_data))
+
         //判断请求地址是否为url
         if (regex.test(after_data)) {
             //读取文件的第一行内容
             after_data = readFileSync(after_data)
         }
+        console.log("after_data: " + JSON.stringify(after_data))
         //将json字符串解析为Json
         before_data = JSON.parse(before_data)
         after_data = JSON.parse(after_data)
@@ -141,6 +142,7 @@ async function main() {
         //读取文件的第一行内容
         after_data = readFileSync(after_data)
     }
+    console.log("after_data: " + JSON.stringify(after_data))
     //将json字符串解析为Json
     before_data = JSON.parse(before_data)
     after_data = JSON.parse(after_data)
