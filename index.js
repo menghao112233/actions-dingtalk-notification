@@ -17,7 +17,7 @@ let markdown_text = "";
 
 
 async function main() {
-
+    
     markdown_text = `| [${repository}](https://github.com/cloudlab-os/${projectName})  | ${actor} | ${gitHubRef} | 
 `
 
@@ -25,8 +25,9 @@ async function main() {
         success_start_text +
         markdown_text +
         end_text;
+    
     //发送钉钉通知
-    dingTalkAxios(core.getInput(dingTalkUrl), markdown_data)
+    dingTalkAxios(dingTalkUrl, markdown_data)
 
 }
 
