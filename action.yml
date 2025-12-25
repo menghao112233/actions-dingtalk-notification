@@ -1,20 +1,9 @@
 name: 'DingTalk Notification'
 description: 'Actions completed publishing DingTalk notification'
-continue-on-error: true
 inputs:
-  request_url: # id of input
-    description: 'curl Get the before data'
-    required: false
-  validate: # id of input
-    description: 'validate data'
-    required: false
-  im_hook_url: # id of input
-    description: 'im_hook_url notification address'
-    required: false
-  footer_text: # id of output
-    description: 'Notes Rich Text'
-    required: false
-#    default: 'World'
+  ding_talk_url: # id of input
+    description: 'ding_talk_url notification address'
+    required: true
 runs:
   using: 'node20'
   main: 'index.js'
