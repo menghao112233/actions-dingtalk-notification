@@ -18,8 +18,7 @@ let markdown_text = "";
 
 async function main() {
     
-    markdown_text = `| [${repository}](https://github.com/cloudlab-os/${projectName})  | ${actor} | ${gitHubRef} | 
-`
+    markdown_text = `| [${repository}](https://github.com/cloudlab-os/${projectName})  | ${actor} | ${gitHubRef} |`
 
     markdown_data.markdown.text =
         success_start_text +
