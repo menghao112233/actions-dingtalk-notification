@@ -1,21 +1,10 @@
-const core = require("@actions/core");
-
-
-//发布人
-const actor = process.env.GITHUB_ACTOR;
 
 // 仓库/项目名
 const repository = process.env.GITHUB_REPOSITORY;
 
-// 版本号
-const gitHubRef = process.env.GITHUB_REF;
-
 // 域名
 const domain = process.env.DOMAIN;
 
-
-// 钉钉群地址
-const dingTalkUrl = core.getInput("ding_talk_url");
 
 
 //项目名
