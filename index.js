@@ -2,7 +2,6 @@ const {
     success_start_text,
     end_text,
     markdown_data,
-    projectName,
 } = require('./constants/dingTalk');
 const {dingTalkAxios} = require('./api/axios')
 const core = require('@actions/core');
@@ -15,6 +14,14 @@ const actor = process.env.GITHUB_ACTOR;
 
 // 版本号
 const gitHubRef = process.env.GITHUB_REF;
+
+
+//项目名
+let projectName = repository;
+//判断如果有仓库,把仓库去掉
+if (repository && repository.includes('/')) {
+    projectName = repository.split('/').pop();
+}
 
 async function main() {
     

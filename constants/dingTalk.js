@@ -25,7 +25,7 @@ const success_start_text =
 
 const end_text =
     `#### \n ` +
-    `[${domain}](${domain})  \n `
+    `[${domain}](https://${domain})  \n `
 
 const markdown_data = {
     msgtype: "markdown",
