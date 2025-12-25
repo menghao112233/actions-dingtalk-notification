@@ -16,6 +16,8 @@ const actor = process.env.GITHUB_ACTOR;
 const gitHubRef = process.env.GITHUB_REF;
 
 
+// 仓库/项目名
+const repository = process.env.GITHUB_REPOSITORY;
 //项目名
 let projectName = repository;
 //判断如果有仓库,把仓库去掉
